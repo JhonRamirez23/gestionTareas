@@ -1,4 +1,4 @@
-const { LabelTask } = require('../models/label_task');
+const { LabelTask } = require('../models');
 
 // Controller para manejar las operaciones CRUD de etiquetas de tareas
 
@@ -6,9 +6,7 @@ const { LabelTask } = require('../models/label_task');
 exports.createLabelTask = async (req, res) => {
   try {
     const labelTask = await LabelTask.create(req.body);
-    if (!labelTask) {
-      return res.status(400).json({ error: 'Falló la creación de la etiqueta de tarea' });
-    }
+    
     res.status(201).json(labelTask);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -19,7 +17,7 @@ exports.createLabelTask = async (req, res) => {
 exports.getAllLabelTasks = async (req, res) => {
   try {
     const labelTasks = await LabelTask.findAll();
-    if (!labelTasks) {
+    if (labelTasks.length === 0) {
       return res.status(404).json({ error: 'No se encontraron etiquetas de tareas' });
     }
     res.json(labelTasks);
