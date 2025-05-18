@@ -1,6 +1,7 @@
 require('dotenv').config();
 const app = require('./app');
 const sequelize = require('./config/database');
+const mongoose = require('./config/mongo');
 
 const PORT = process.env.SERVER_PORT;
 
@@ -13,3 +14,6 @@ sequelize.authenticate()
     app.listen(PORT, () => console.log(`Servidor corriendo en puerto ${PORT}`));
   })
   .catch(error => console.error('Error conectando con la base de datos:', error));
+
+  // Conexión a MongoDB
+ 
