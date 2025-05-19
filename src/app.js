@@ -10,11 +10,11 @@ const taskLabel = require('./routes/label_task');
 app.use(cors());
 app.use(express.json());
 
-app.use('/', (req, res) => { res.send("Servidor corriendo en Railway")});
-app.use('/users', userRoutes);
-app.use('/tasks', taskRoutes);
-app.use('/projects', projectRoutes);
-app.use('/labels', labels);
-app.use('/task_label', taskLabel);
+app.use('/api/v1', (req, res) => { res.status(200}.json({ message: 'Listening API'});
+app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/tasks', taskRoutes);
+app.use('/api/v1/projects', projectRoutes);
+app.use('/api/v1/labels', labels);
+app.use('/api/v1/task_label', taskLabel);
 
 module.exports = app;
