@@ -7,9 +7,9 @@ exports.createLabel = async (req, res) => {
   try {
     const label = await Label.create(req.body);
 
-    res.status(201).json(label);
+    return res.status(201).json(label);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 };
 
@@ -20,9 +20,9 @@ exports.getAllLabels = async (req, res) => {
     if (labels.length === 0) {
       return res.status(404).json({ error: 'No se encontraron etiquetas' });
     }
-    res.json(labels);
+    return res.json(labels);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 };
 
@@ -33,9 +33,9 @@ exports.getLabelById = async (req, res) => {
     if (!label) {
       return res.status(404).json({ error: 'Etiqueta no encontrada' });
     }
-    res.json(label);
+    return res.json(label);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 };
 
@@ -47,9 +47,9 @@ exports.updateLabel = async (req, res) => {
       return res.status(404).json({ error: 'Etiqueta no encontrada' });
     }
     await label.update(req.body);
-    res.json(label);
+    return res.json(label);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 };
 
@@ -61,8 +61,8 @@ exports.deleteLabel = async (req, res) => {
       return res.status(404).json({ error: 'Etiqueta no encontrada' });
     }
     await label.destroy();
-    res.status(204).send();
+    return res.status(204).send();
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 };

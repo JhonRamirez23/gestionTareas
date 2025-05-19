@@ -7,9 +7,9 @@ exports.createProject = async (req, res) => {
   try {
     const project = await Project.create(req.body);
     
-    res.status(201).json(project);
+    return res.status(201).json(project);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 };
 
@@ -20,9 +20,9 @@ exports.getAllProjects = async (req, res) => {
     if (!projects) {
       return res.status(404).json({ error: 'No se encontraron proyectos' });
     }
-    res.json(projects);
+    return res.json(projects);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 };
 
@@ -33,9 +33,9 @@ exports.getProjectById = async (req, res) => {
     if (!project) {
       return res.status(404).json({ error: 'Proyecto no encontrado' });
     }
-    res.json(project);
+    return res.json(project);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 };
 
@@ -47,9 +47,9 @@ exports.updateProject = async (req, res) => {
       return res.status(404).json({ error: 'Proyecto no encontrado' });
     }
     await project.update(req.body);
-    res.json(project);
+    return res.json(project);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 };
 
@@ -61,8 +61,8 @@ exports.deleteProject = async (req, res) => {
       return res.status(404).json({ error: 'Proyecto no encontrado' });
     }
     await project.destroy();
-    res.status(204).send();
+    return res.status(204).send();
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 };
