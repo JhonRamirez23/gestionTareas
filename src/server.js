@@ -3,7 +3,7 @@ const app = require('./app');
 const sequelize = require('./config/database');
 const mongoose = require('./config/mongo');
 
-const PORT = process.env.SERVER_PORT;
+const PORT = process.env.PORT || 3306;
 
 sequelize.authenticate()
   .then(() => {
