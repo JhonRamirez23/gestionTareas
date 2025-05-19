@@ -6,8 +6,16 @@ const taskRoutes = require('./routes/taskRoutes');
 const projectRoutes = require('./routes/projectsRoutes');
 const labels = require('./routes/labelsRoutes');
 const taskLabel = require('./routes/label_task');
+const dotenv = require('dotenv');
+dotenv.config(); 
 
-app.use(cors());
+// Protege la API de otras conexiones
+app.use(cors({
+  origin: process.env.SERVER_HOST,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
+
 app.use(express.json());
 
 app.get('/', (req, res) => { res.send("Servidor corriendo en Railway")});
