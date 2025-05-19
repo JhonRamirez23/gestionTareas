@@ -15,9 +15,9 @@ exports.createTask = async (req, res) => {
       data: Object.values(newTask.dataValues)
     });
 
-    res.status(201).json(newTask);
+    return res.status(201).json(newTask);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+   return  res.status(500).json({ error: err.message });
   }
 };
 
@@ -31,7 +31,7 @@ exports.getAllTasks = async (req, res) => {
     
     res.json(tasks);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 };
 
@@ -44,7 +44,7 @@ exports.getTaskById = async (req, res) => {
     }
     res.json(task);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 };
 
@@ -63,9 +63,9 @@ exports.updateTask = async (req, res) => {
     });
 
     await task.update(req.body);
-    res.json(task);
+    return res.json(task);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 };
 
@@ -84,8 +84,8 @@ exports.deleteTask = async (req, res) => {
     });
 
     await task.destroy();
-    res.status(204).send();
+    return res.status(204).send();
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 };
