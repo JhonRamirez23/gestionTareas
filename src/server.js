@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 8080;
 sequelize.authenticate()
   .then(() => {
     console.log('Conexión con base de datos exitosa');
-    // return sequelize.sync(); // sincroniza el modelo
+    return sequelize.sync(); // sincroniza el modelo
   })
   .then(() => {
     app.listen(PORT, () => console.log(`Servidor corriendo en puerto ${PORT}`));
