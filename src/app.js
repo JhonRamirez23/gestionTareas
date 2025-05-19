@@ -10,7 +10,7 @@ const taskLabel = require('./routes/label_task');
 app.use(cors());
 app.use(express.json());
 
-app.use('/', (req, res) => { res.send("Servidor corriendo en Railway")});
+app.get('/', (req, res) => { res.send("Servidor corriendo en Railway")});
 app.use('/users', userRoutes);
 app.use('/tasks', taskRoutes);
 app.use('/projects', projectRoutes);
