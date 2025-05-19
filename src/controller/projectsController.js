@@ -17,7 +17,7 @@ exports.createProject = async (req, res) => {
 exports.getAllProjects = async (req, res) => {
   try {
     const projects = await Project.findAll();
-    if (!projects) {
+    if (projects.length === 0) {
       return res.status(404).json({ error: 'No se encontraron proyectos' });
     }
     return res.json(projects);
