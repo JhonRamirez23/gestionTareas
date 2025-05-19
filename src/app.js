@@ -17,4 +17,7 @@ app.use('/projects', projectRoutes);
 app.use('/labels', labels);
 app.use('/task_label', taskLabel);
 
+// Manejador de errores para rutas no encontradas
+app.use((req, res) => { res.sendStatus(404).json({ error: 'Ruta no encontrada' }) });
+
 module.exports = app;
